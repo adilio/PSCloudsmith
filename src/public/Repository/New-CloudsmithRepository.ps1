@@ -73,10 +73,10 @@ function New-CloudSmithRepository {
     }
 
     process {
-        $endpoint = "repos/$Owner"
+        $endpoint = "repos/$Owner/"
 
         $Body = @{
-            mame = $Name
+            name = $Name
         }
 
         if($Type){
@@ -96,9 +96,9 @@ function New-CloudSmithRepository {
         }
 
         if($IndexFiles -eq $false){
-            $Body.Add('index_files',$false)
+            $Body.Add('index_files',[bool]'False')
         } else {
-            $Body.Add('index_files',$true)
+            $Body.Add('index_files',[bool]'True')
         }
 
         Invoke-CloudSmith -Slug $endpoint -Method 'POST' -Body $Body

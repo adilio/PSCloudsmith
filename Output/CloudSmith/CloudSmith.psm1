@@ -1,4 +1,26 @@
 function Get-CloudsmithRepository {
+    <#
+    .SYNOPSIS
+    Retrieve CloudSmith repository information
+    
+    .DESCRIPTION
+    Retrieve CloudSmith repository Information
+    
+    .PARAMETER Namespace
+    The namespace to retrieve repository information from
+    
+    .PARAMETER Repository
+    Retrieve only information for this repository
+    
+    .EXAMPLE
+    Get-CloudsmithRepository
+
+    .EXAMPLE
+    Get-CloudsmithRepository -Namespace yourusername -Repository your-repo-name
+    
+    .NOTES
+    
+    #>
     [CmdletBinding(DefaultParameterSetName='Default')]
     Param(
         [Parameter(Mandatory,ParameterSetName='Owner')]
@@ -36,6 +58,40 @@ function Get-CloudsmithRepository {
     
 }
 function New-CloudSmithRepository {
+    <#
+    .SYNOPSIS
+    Create a new Cloudsmith Repository
+    
+    .DESCRIPTION
+    Create a new Cloudsmith Repository
+    
+    .PARAMETER Owner
+    The namespace to create the repository in. (Likely your username)
+    
+    .PARAMETER Name
+    A descriptive name for the repository.
+    
+    .PARAMETER Type
+    The repository type changes how it is accessed and billed. Private repositories can only be used on paid plans, but are visible only to you or authorised delegates. Public repositories are free to use on all plans and visible to all Cloudsmith users.
+    
+    .PARAMETER Slug
+    Optional. The slug identifies the repository in URIs.
+    
+    .PARAMETER Description
+    A description of the repository's purpose/contents.
+    
+    .PARAMETER StorageRegion
+    The Cloudsmith region in which package files are stored.
+    
+    .PARAMETER IndexFiles
+    If checked, files contained in packages will be indexed, which increase the synchronisation time required for packages. Note that it is recommended you keep this enabled unless the synchronisation time is significantly impacted.
+    
+    .EXAMPLE
+    New-CloudSmithRepository -Owner yourusername -Name api-test -Type Public -Slug test-api-repo -Description 'Testing creation from API' 
+    
+    .NOTES
+    General notes
+    #>
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]
@@ -76,10 +132,10 @@ function New-CloudSmithRepository {
     }
 
     process {
-        $endpoint = "repos/$Owner"
+        $endpoint = "repos/$Owner/"
 
         $Body = @{
-            mame = $Name
+            name = $Name
         }
 
         if($Type){
@@ -99,15 +155,37 @@ function New-CloudSmithRepository {
         }
 
         if($IndexFiles -eq $false){
-            $Body.Add('index_files',$false)
+            $Body.Add('index_files',[bool]'False')
         } else {
-            $Body.Add('index_files',$true)
+            $Body.Add('index_files',[bool]'True')
         }
 
         Invoke-CloudSmith -Slug $endpoint -Method 'POST' -Body $Body
     }
 }
 function Remove-CloudsmithRepository {
+    <#
+    .SYNOPSIS
+    Removes a CloudSmith Repository
+    
+    .DESCRIPTION
+    Removes a CloudSmith Repository
+    
+    .PARAMETER Owner
+    The namespace or owner of the repository (Likely your username)
+    
+    .PARAMETER Repository
+    The repository to remove
+    
+    .PARAMETER Force
+    Don't prompt for confirmation
+    
+    .EXAMPLE
+    Remove-CloudsmithRepository -Owner yourusername -Reposistory your-repository-name
+    
+    .NOTES
+    
+    #>
     [CmdletBinding(ConfirmImpact = 'High',SupportsShouldProcess)]
     Param(
         [Parameter(Mandatory)]
@@ -235,7 +313,7 @@ function Invoke-CloudSmith {
         }
 
         if ($Body) {
-            $Params.Add('Body', $Body)
+            $Params.Add('Body', ($Body | ConvertTo-Json -Depth 3))
         }
 
         if ($BodyAsArray) {

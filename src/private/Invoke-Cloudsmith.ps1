@@ -48,7 +48,7 @@ function Invoke-CloudSmith {
         }
 
         if ($Body) {
-            $Params.Add('Body', $Body)
+            $Params.Add('Body', ($Body | ConvertTo-Json -Depth 3))
         }
 
         if ($BodyAsArray) {
