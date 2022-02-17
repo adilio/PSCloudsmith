@@ -2,6 +2,7 @@ function Invoke-CloudSmith {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]
+        [Alias('Endpoint')]
         [String]
         $Slug,
 

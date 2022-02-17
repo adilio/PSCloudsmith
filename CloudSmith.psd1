@@ -72,7 +72,8 @@ Copyright = '(c) Stephen Valdinger. All rights reserved.'
 FunctionsToExport = @('Connect-CloudsmithInstance',
 'Get-CloudsmithRepository',
 'New-CloudsmithRepository',
-'Remove-CloudsmithRepository')
+'Remove-CloudsmithRepository',
+'Set-CloudsmithRepository')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'

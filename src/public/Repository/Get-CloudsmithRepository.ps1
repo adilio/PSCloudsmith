@@ -40,7 +40,7 @@ function Get-CloudsmithRepository {
     process {
         switch($PSCmdlet.ParameterSetName){
             'Owner' {
-                $slug = 'repos/'
+                $slug = "repos/$Namespace/"
     
                 if($Repository){
                     $slug = $slug + "$Repository/"

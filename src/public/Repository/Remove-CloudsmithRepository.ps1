@@ -28,8 +28,8 @@ function Remove-CloudsmithRepository {
         [String]
         $Owner,
 
-        [Parameter(Mandatory)]
-        [String]
+        [Parameter(Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [String[]]
         $Repository,
 
         [Parameter()]
