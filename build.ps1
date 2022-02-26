@@ -12,7 +12,7 @@ process {
         $Build {
 
             $Output = Join-Path $root -ChildPath 'Output'
-            $CloudSmithFolder = Join-Path $Output -ChildPath 'CloudSmith'
+            $CloudsmithFolder = Join-Path $Output -ChildPath 'Cloudsmith'
 
             if(Test-Path "$root\Output"){
                 Remove-Item "$root\Output\" -Recurse -Force
@@ -21,21 +21,21 @@ process {
                 $null = New-Item $Output -ItemType Directory
             }
 
-            if(-not (Test-Path $CloudSmithFolder)){
-                $null = New-Item $CloudSmithFolder -ItemType Directory
+            if(-not (Test-Path $CloudsmithFolder)){
+                $null = New-Item $CloudsmithFolder -ItemType Directory
             }
 
             
 
             Get-ChildItem $root\src\public\ -Recurse -Filter *.ps1 | Foreach-Object {
-                Get-Content $_.FullName | Add-Content "$root\Output\CloudSmith\PSCloudSmith.psm1" -Force
+                Get-Content $_.FullName | Add-Content "$root\Output\PSCloudsmith\PSCloudsmith.psm1" -Force
             }
 
             Get-ChildItem $root\src\private\ -Recurse -Filter *.ps1 | Foreach-Object { 
-                Get-Content $_.FullName | Add-Content "$root\Output\CloudSmith\PSCloudSmith.psm1" -Force
+                Get-Content $_.FullName | Add-Content "$root\Output\PSCloudsmith\PSCloudsmith.psm1" -Force
             }
 
-            Copy-Item $root\PSCloudSmith.psd1 -Destination $CloudSmithFolder
+            Copy-Item $root\PSCloudSmith.psd1 -Destination $CloudsmithFolder
         }
     }
 }
