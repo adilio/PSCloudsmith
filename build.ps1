@@ -28,14 +28,14 @@ process {
             
 
             Get-ChildItem $root\src\public\ -Recurse -Filter *.ps1 | Foreach-Object {
-                Get-Content $_.FullName | Add-Content "$root\Output\CloudSmith\CloudSmith.psm1" -Force
+                Get-Content $_.FullName | Add-Content "$root\Output\CloudSmith\PSCloudSmith.psm1" -Force
             }
 
             Get-ChildItem $root\src\private\ -Recurse -Filter *.ps1 | Foreach-Object { 
-                Get-Content $_.FullName | Add-Content "$root\Output\CloudSmith\CloudSmith.psm1" -Force
+                Get-Content $_.FullName | Add-Content "$root\Output\CloudSmith\PSCloudSmith.psm1" -Force
             }
 
-            Copy-Item $root\CloudSmith.psd1 -Destination $CloudSmithFolder
+            Copy-Item $root\PSCloudSmith.psd1 -Destination $CloudSmithFolder
         }
     }
 }
