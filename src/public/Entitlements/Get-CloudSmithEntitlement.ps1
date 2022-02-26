@@ -41,9 +41,9 @@ function Get-CloudsmithEntitlement {
         $Repository,
 
         [Parameter()]
-        [Alias('Identifier', 'SlugPerm')]
+        [Alias('SlugPerm')]
         [String[]]
-        $Name,
+        $Identifier,
 
         [Parameter()]
         [Switch]

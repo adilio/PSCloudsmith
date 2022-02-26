@@ -69,17 +69,35 @@ Copyright = '(c) Stephen Valdinger & Adil Leghari. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Connect-CloudsmithInstance',
+FunctionsToExport = @(
+#General
+'Connect-CloudsmithInstance',
+#Repository
 'Get-CloudsmithRepository',
 'New-CloudsmithRepository',
 'Remove-CloudsmithRepository',
 'Set-CloudsmithRepository',
+#Region
 'Get-CloudsmithRegion',
+#Entitlements
 'Get-CloudsmithEntitlement',
 'Reset-CloudsmithEntitlement',
 'Remove-CloudsmithEntitlement',
 'Enable-CloudsmithEntitlement',
-'Disable-CloudsmithEntitlement')
+'Disable-CloudsmithEntitlement',
+'New-CloudsmithEntitlement',
+'Set-CloudsmithEntitlement',
+#Status
+'Get-CloudsmithStatus',
+#Vulnerability
+'Get-CloudsmithVulnerability'
+#Org
+'Get-CloudsmithOrg',
+'Get-CloudsmithOrgMember'
+'Remove-CloudsmithOrgMember'
+#User
+'Get-CloudsmithUser',
+'Get-CloudsmithApiKey')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
