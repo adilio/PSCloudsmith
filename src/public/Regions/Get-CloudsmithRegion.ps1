@@ -26,7 +26,6 @@ function Get-CloudsmithRegion {
         if(-not $header){
             throw "Not connected to Cloudsmith API! Run Connect-CloudsmithInstance first!"
         }
-
     }
     
     process {
