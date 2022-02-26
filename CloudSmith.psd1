@@ -74,7 +74,12 @@ FunctionsToExport = @('Connect-CloudsmithInstance',
 'New-CloudsmithRepository',
 'Remove-CloudsmithRepository',
 'Set-CloudsmithRepository',
-'Get-CloudsmithRegion')
+'Get-CloudsmithRegion',
+'Get-CloudsmithEntitlement',
+'Reset-CloudsmithEntitlement',
+'Remove-CloudsmithEntitlement',
+'Enable-CloudsmithEntitlement',
+'Disable-CloudsmithEntitlement')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
