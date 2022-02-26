@@ -12,7 +12,7 @@ process {
         $Build {
 
             $Output = Join-Path $root -ChildPath 'Output'
-            $CloudsmithFolder = Join-Path $Output -ChildPath 'Cloudsmith'
+            $CloudsmithFolder = Join-Path $Output -ChildPath 'PSCloudsmith'
 
             if(Test-Path "$root\Output"){
                 Remove-Item "$root\Output\" -Recurse -Force
