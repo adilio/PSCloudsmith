@@ -35,7 +35,7 @@ process {
                 Get-Content $_.FullName | Add-Content "$root\Output\PSCloudsmith\PSCloudsmith.psm1" -Force
             }
 
-            Copy-Item $root\PSCloudSmith.psd1 -Destination $CloudsmithFolder
+            Copy-Item $root\PSCloudsmith.psd1 -Destination $CloudsmithFolder
         }
     }
 }
