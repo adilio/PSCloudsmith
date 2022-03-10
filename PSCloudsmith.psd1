@@ -99,8 +99,19 @@ FunctionsToExport = @(
 'Get-CloudsmithUser',
 'Get-CloudsmithApiKey',
 #Quota
-'Get-CloudsmithQuota')
-
+'Get-CloudsmithQuota',
+#Metrics
+'Get-CloudsmithAccountMetric',
+'Get-CloudsmithRepositoryMetric',
+'Get-CloudsmithPackageMetric',
+#Packages
+'New-CloudsmithNugetPackage',
+#Rates
+'Get-CloudsmithRateLimit',
+#Formats
+'Get-CloudsmithPackageFormat',
+#Distros
+'Get-CloudsmithDistro')
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
 
