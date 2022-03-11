@@ -1,4 +1,4 @@
-function New-CloudsmithNugetPackage {
+function New-CloudsmithPackage {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]

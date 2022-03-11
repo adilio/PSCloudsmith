@@ -72,6 +72,7 @@ Copyright = '(c) Stephen Valdinger & Adil Leghari. All rights reserved.'
 FunctionsToExport = @(
 #General
 'Connect-CloudsmithInstance',
+'Set-CloudsmithDefaultParameter',
 #Repository
 'Get-CloudsmithRepository',
 'New-CloudsmithRepository',
@@ -105,7 +106,8 @@ FunctionsToExport = @(
 'Get-CloudsmithRepositoryMetric',
 'Get-CloudsmithPackageMetric',
 #Packages
-'New-CloudsmithNugetPackage',
+'New-CloudsmithPackage',
+'Get-CloudsmithPackageDependency',
 #Rates
 'Get-CloudsmithRateLimit',
 #Formats
