@@ -73,6 +73,7 @@ FunctionsToExport = @(
 #General
 'Connect-CloudsmithInstance',
 'Set-CloudsmithDefaultParameter',
+'Get-CloudsmithDefaultParameter'
 #Repository
 'Get-CloudsmithRepository',
 'New-CloudsmithRepository',

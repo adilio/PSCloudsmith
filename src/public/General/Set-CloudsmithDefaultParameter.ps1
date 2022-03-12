@@ -1,11 +1,11 @@
 function Set-CloudsmithDefaultParameter {
     [CmdletBinding(DefaultParameterSetName = 'Owner')]
     Param(
-        [Parameter(Mandatory, ParameterSetName = 'Owner')]
+        [Parameter()]
         [String]
         $Owner,
 
-        [Parameter(Mandatory, ParameterSetName = 'Repository')]
+        [Parameter()]
         [String]
         $Repository
     )
@@ -19,16 +19,15 @@ function Set-CloudsmithDefaultParameter {
     process {
 
         if (-not $cloudSmithDefaultParams) {
-            $cloudSmithDefaultParams = @{}
+            $script:cloudSmithDefaultParams = @{}
         }
-        switch ($PSCmdlet.ParameterSetName) {
-            'Owner' {
-                $cloudSmithDefaultParams.Add('Owner', $Owner)
-            }
 
-            'Repository' {
-                $cloudSmithDefaultParams.Add('Repository', $Repository)
-            }
+        if($Owner){
+            $cloudsmithDefaultParams.Add('Owner',$Owner)
         }
+        if($Repository){
+            $cloudSmithDefaultParams.Add('Repository',$Repository)
+        }
+        
     }
 }
