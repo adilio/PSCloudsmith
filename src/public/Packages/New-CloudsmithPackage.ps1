@@ -1,24 +1,28 @@
 function New-CloudsmithPackage {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory)]
+        [Parameter()]
         [String]
-        $Owner,
+        $Owner = $cloudsmithDefaultParams['Owner'],
 
-        [Parameter(Mandatory)]
+        [Parameter()]
         [String]
-        $Repository,
+        $Repository = $cloudsmithDefaultParams['Repository'],
 
         [Parameter(Mandatory)]
         [ValidateScript({
                 Test-Path $_
             })]
-        [Alias('File', 'NupkgFile')]
-        $Nupkg,
+        [Alias('File')]
+        $Artifact,
+
+        [Parameter(Mandatory)]
+        [String]
+        $Format,
 
         [Parameter()]
         [String]
-        $Checksum = (Get-FileHash $Nupkg).Hash
+        $Checksum = (Get-FileHash $Artifact).Hash
     )
 
     begin {
@@ -30,8 +34,8 @@ function New-CloudsmithPackage {
     process {
         Write-Host "Validating checksum to determine upload method"
           
-        $md5Hash = (Get-FileHash $Nupkg -Algorithm MD5).Hash
-        $sha256Hash = (Get-FileHash $Nupkg -Algorithm SHA256).Hash
+        $md5Hash = (Get-FileHash $Artifact -Algorithm MD5).Hash
+        $sha256Hash = (Get-FileHash $Artifact -Algorithm SHA256).Hash
 
         $validmd5Hash = $md5Hash -eq $Checksum
         $validSHA256Hash = $sha256Hash -eq $Checksum
@@ -39,8 +43,8 @@ function New-CloudsmithPackage {
         $UrlParams = @{
             Owner      = $Owner
             Repository = $Repository
-            Leaf   = Split-Path $Nupkg -Leaf
-            File = $Nupkg
+            Leaf   = Split-Path $Artifact -Leaf
+            File = $Artifact
         }
 
         switch ($true) {
@@ -68,6 +72,7 @@ function New-CloudsmithPackage {
             Owner = $Owner
             Repository = $Repository
             Identifier = $RequestId.identifier
+            Format = $Format
         }
 
         Complete-CloudsmithUpload @completionParams

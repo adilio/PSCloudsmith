@@ -11,7 +11,11 @@ function Complete-CloudsmithUpload {
 
         [Parameter(Mandatory)]
         [String]
-        $Identifier
+        $Identifier,
+
+        [Parameter(Mandatory)]
+        [String]
+        $Format
     )
 
     begin {
@@ -22,7 +26,7 @@ function Complete-CloudsmithUpload {
 
     process {
 
-        $endpoint = "packages/$Owner/$Repository/upload/nuget/"
+        $endpoint = "packages/$Owner/$Repository/upload/$Format/"
 
         $Body = @{
             package_file = $Identifier
