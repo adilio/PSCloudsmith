@@ -1,0 +1,4 @@
+site_name: Cloudsmith PowerShell Documentation
+theme: readthedocs
+repo_url: https://github.com/adilio/PSCloudsmith
+docs_dir: ./docs
